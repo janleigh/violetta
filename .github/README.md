@@ -22,7 +22,7 @@ this readme sucks
 
 <!--- LINKS --->
 ## :satellite: <samp>LINKS</samp>
-   - [Invite Akari](https://discord.com/oauth2/authorize?client_id=1320575111304314901&permissions=1237423877622&scope=bot%20applications.commands)
+   - [Invite Violetta](https://discord.com/oauth2/authorize?client_id=1320575111304314901&permissions=1237423877622&scope=bot%20applications.commands)
    - [Support Server](https://discord.gg/fPdqz4f8wf)
 
 <!--- LICENSE --->
