@@ -18,7 +18,7 @@
 import { SapphireClient } from "@sapphire/framework";
 import { CLIENT_OPTIONS } from "../config";
 
-export class AkariClient extends SapphireClient {
+export class BaseClient extends SapphireClient {
 	public constructor() {
 		super(CLIENT_OPTIONS);
 	}
@@ -34,6 +34,6 @@ export class AkariClient extends SapphireClient {
 
 declare module "@sapphire/pieces" {
 	interface Container {
-		client: AkariClient;
+		client: BaseClient;
 	}
 }

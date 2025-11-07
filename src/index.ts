@@ -15,7 +15,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  **/
 
-import { AkariClient } from "./lib/AkariClient";
+import { BaseClient } from "./lib/BaseClient";
 
 import "@sapphire/plugin-logger/register";
 import "dotenv/config";
@@ -28,7 +28,7 @@ const main = (): void => {
 		);
 	}
 
-	void new AkariClient().login();
+	void new BaseClient().login();
 };
 
 main();

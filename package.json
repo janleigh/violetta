@@ -1,10 +1,10 @@
 {
-	"name": "akari",
-	"description": "A chatbot for Discord. Powered by Ollama.",
+	"name": "violetta",
+	"description": "A Discord bot.",
 	"version": "1.0.0",
 	"author": {
 		"name": "janleigh",
-		"url": "https://github.com/janleigh/akari"
+		"url": "https://github.com/janleigh/violetta"
 	},
 	"license": "AGPL-3.0-only",
 	"main": "src/index.ts",
