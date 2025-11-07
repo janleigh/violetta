@@ -1,0 +1,12 @@
+# Directories
+.github/
+.yarn/
+build/
+node_modules/
+public/
+
+# Files
+*.lock
+*.example
+./*.json
+LICENSE.md

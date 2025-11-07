@@ -1,0 +1,14 @@
+{
+	"extends": [
+		"config:base"
+	],
+	"ignorePresets": [ ":dependencyDashboard" ],
+	"labels": [ 
+		"Type: Chore",
+		"Type: Dependencies"
+	],
+	"schedule": [ "before 12pm on Sunday" ],
+	"github-actions": {
+		"enabled": false
+	}
+}

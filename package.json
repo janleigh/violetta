@@ -1,0 +1,38 @@
+{
+	"name": "akari",
+	"description": "A chatbot for Discord. Powered by Ollama.",
+	"version": "1.0.0",
+	"author": {
+		"name": "janleigh",
+		"url": "https://github.com/janleigh/akari"
+	},
+	"license": "AGPL-3.0-only",
+	"main": "src/index.ts",
+	"scripts": {
+		"start": "bun run start:prod",
+		"start:dev": "NODE_ENV=development bun run src/index.ts",
+		"start:prod": "NODE_ENV=production bun run src/index.ts",
+		"format": "prettier --write src",
+		"format:check": "prettier --check src",
+		"lint": "eslint src --ext .ts",
+		"lint:fix": "eslint src --ext .ts --fix"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@typescript-eslint/eslint-plugin": "^8.46.3",
+		"eslint": "^9.39.1",
+		"eslint-plugin-prettier": "^5.5.4",
+		"prettier": "^3.6.2"
+	},
+	"dependencies": {
+		"@sapphire/decorators": "^6.2.0",
+		"@sapphire/framework": "^5.3.7",
+		"@sapphire/plugin-logger": "^4.1.0",
+		"axios": "^1.13.2",
+		"discord.js": "^14.24.2",
+		"dotenv": "^16.6.1"
+	},
+	"peerDependencies": {
+		"typescript": "^5.8.3"
+	}
+}
