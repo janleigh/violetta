@@ -77,6 +77,15 @@ export class CreateVcCommand extends Command {
 
 		const userRoles = member.roles.cache.filter((role) => role.id !== interaction.guild!.id);
 
+		// Hard-coded for a specific server to ignore certain roles
+		// Comment this if you want to use this in your own server.
+		const ignoredRoles = ["👥 Mga Ampon", "1435977013243547829"];
+		userRoles.forEach((role) => {
+			if (ignoredRoles.includes(role.name) || ignoredRoles.includes(role.id)) {
+				userRoles.delete(role.id);
+			}
+		});
+
 		if (userRoles.size === 0) {
 			const errorEmbed = new EmbedBuilder()
 				.isErrorEmbed()
