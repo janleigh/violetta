@@ -24,6 +24,17 @@ import { VoiceState } from "discord.js";
 })
 export class VoiceStateUpdateListener extends Listener<typeof Events.VoiceStateUpdate> {
 	public async run(oldState: VoiceState, newState: VoiceState) {
+		if (newState.channel && oldState.channelId !== newState.channelId) {
+			const joinedId = newState.channelId;
+			if (joinedId && this.container.client.tempVoiceChannelTimeouts.has(joinedId)) {
+				const to = this.container.client.tempVoiceChannelTimeouts.get(joinedId)!;
+				clearTimeout(to as unknown as number);
+				this.container.client.tempVoiceChannelTimeouts.delete(joinedId);
+				this.container.logger.info(
+					`[VoiceStateUpdate] Cancelled unused timeout for channel ${joinedId} because someone joined.`
+				);
+			}
+		}
 		if (oldState.channel && oldState.channelId !== newState.channelId) {
 			const channelId = oldState.channelId;
 

@@ -30,6 +30,7 @@ declare module "@sapphire/framework" {
 	}
 	interface SapphireClient {
 		tempVoiceChannels: Set<string>;
+		tempVoiceChannelTimeouts: Map<string, ReturnType<typeof setTimeout>>;
 	}
 }
 

@@ -25,6 +25,12 @@ export class BaseClient extends SapphireClient {
 	 */
 	public tempVoiceChannels: Set<string> = new Set();
 
+	/**
+	 * @description Map of timeouts for temporary voice channels which auto-delete
+	 * if nobody joined within a grace period. Keyed by channel ID.
+	 */
+	public tempVoiceChannelTimeouts: Map<string, ReturnType<typeof setTimeout>> = new Map();
+
 	public constructor() {
 		super(CLIENT_OPTIONS);
 	}

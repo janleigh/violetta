@@ -124,6 +124,36 @@ export class CreateVcCommand extends Command {
 
 			this.container.client.tempVoiceChannels.add(voiceChannel.id);
 
+			// Auto-delete if nobody joins within 5 minutes
+			const GRACE_PERIOD_MS = 5 * 60 * 1000;
+			const timeout = setTimeout(async () => {
+				try {
+					const fetched = await interaction.guild?.channels.fetch(voiceChannel.id);
+					if (!fetched || !fetched.isVoiceBased()) return;
+					if (fetched.members.size === 0) {
+						await fetched.delete("Temporary voice channel was unused within grace period");
+						this.container.client.tempVoiceChannels.delete(voiceChannel.id);
+						this.container.client.tempVoiceChannelTimeouts.delete(voiceChannel.id);
+						this.container.logger.info(
+							`[CreateVcCommand] Deleted unused temp voice channel ${voiceChannel.id}`
+						);
+						try {
+							await interaction.user.send(
+								`Your temporary voice channel **${voiceChannel.name}** was deleted because nobody joined within 5 minutes.`
+							);
+						} catch {
+							/* empty */
+						}
+					}
+				} catch (err) {
+					this.container.logger.error(
+						`[CreateVcCommand] Error while auto-deleting channel ${voiceChannel.id}: ${err}`
+					);
+				}
+			}, GRACE_PERIOD_MS);
+
+			this.container.client.tempVoiceChannelTimeouts.set(voiceChannel.id, timeout);
+
 			const roleList = userRoles.map((role) => `<@&${role.id}>`).join(", ");
 
 			const successEmbed = new EmbedBuilder()
@@ -133,7 +163,9 @@ export class CreateVcCommand extends Command {
 					{ name: "Allowed Roles", value: roleList, inline: false },
 					{ name: "User Limit", value: userLimit === 0 ? "Unlimited" : String(userLimit), inline: true }
 				)
-				.setFooter({ text: "This channel will be automatically deleted when empty." });
+				.setFooter({
+					text: "This channel will be automatically deleted when empty. If nobody joins, it will be removed after 5 minutes."
+				});
 
 			return interaction.editReply({
 				embeds: [successEmbed]
