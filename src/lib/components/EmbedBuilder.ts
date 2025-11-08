@@ -40,7 +40,7 @@ export class EmbedBuilder extends DEmbedBuilder {
 	public constructor() {
 		super();
 
-		this.setColor("#fdd59a");
+		this.setColor("#b3d6ff");
 	}
 
 	/**

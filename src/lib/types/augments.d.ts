@@ -20,8 +20,6 @@ export declare global {
 		interface ProcessEnv {
 			NODE_ENV: "development" | "production";
 			DISCORD_TOKEN: string;
-			OLLAMA_URL: string;
-			OLLAMA_MODEL: string;
 		}
 	}
 }
@@ -29,5 +27,14 @@ export declare global {
 declare module "@sapphire/framework" {
 	interface Preconditions {
 		DeveloperOnlyPrecondition: never;
+	}
+	interface SapphireClient {
+		tempVoiceChannels: Set<string>;
+	}
+}
+
+declare module "@sapphire/pieces" {
+	interface Container {
+		client: BaseClient;
 	}
 }

@@ -19,21 +19,30 @@ import { SapphireClient } from "@sapphire/framework";
 import { CLIENT_OPTIONS } from "../config";
 
 export class BaseClient extends SapphireClient {
+	/**
+	 * @description Set of temporary voice channel IDs that should be deleted when empty.
+	 * @type {Set<string>}
+	 */
+	public tempVoiceChannels: Set<string> = new Set();
+
 	public constructor() {
 		super(CLIENT_OPTIONS);
 	}
 
+	/**
+	 * @override
+	 * @description Logs in the client.
+	 * @param {string} [token] The bot token.
+	 */
 	public override async login(token?: string) {
 		return super.login(token);
 	}
 
+	/**
+	 * @override
+	 * @description Destroys the client.
+	 */
 	public override async destroy() {
 		return super.destroy();
-	}
-}
-
-declare module "@sapphire/pieces" {
-	interface Container {
-		client: BaseClient;
 	}
 }

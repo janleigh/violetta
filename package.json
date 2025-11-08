@@ -1,6 +1,6 @@
 {
 	"name": "violetta",
-	"description": "A Discord bot.",
+	"description": "A (not-so) generic helper bot for Discord.",
 	"version": "1.0.0",
 	"author": {
 		"name": "janleigh",
