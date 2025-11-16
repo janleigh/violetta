@@ -30,7 +30,7 @@
 		"@sapphire/plugin-logger": "^4.1.0",
 		"axios": "^1.13.2",
 		"discord.js": "^14.24.2",
-		"dotenv": "^16.6.1"
+		"dotenv": "^17.0.0"
 	},
 	"peerDependencies": {
 		"typescript": "^5.8.3"
