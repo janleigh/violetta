@@ -13,40 +13,40 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
-import { ChatInputCommand, Command, RegisterBehavior } from "@sapphire/framework";
 import { ApplyOptions } from "@sapphire/decorators";
+import { type ChatInputCommand, Command, RegisterBehavior } from "@sapphire/framework";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags } from "discord.js";
-import { text } from "../../lib/utils";
-import { getEmoji } from "../../lib/utils/common/parsers";
+import { getEmoji } from "../../lib/utils/common/parsers.ts";
+import { text } from "../../lib/utils/index.ts";
 
 @ApplyOptions<Command.Options>({
 	name: "eval",
 	fullCategory: ["Developer"],
-	preconditions: ["DeveloperOnlyPrecondition"]
+	preconditions: ["DeveloperOnlyPrecondition"],
 })
 export class EvaluateCommand extends Command {
-	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
+	override registerApplicationCommands(registry: ChatInputCommand.Registry) {
 		registry.registerChatInputCommand(
 			(builder) =>
 				builder
 					.setName("eval")
 					.setDescription("Execute some raw JavaScript code.")
 					.addStringOption((option) =>
-						option.setName("input").setDescription("The code to execute.").setRequired(true)
+						option.setName("input").setDescription("The code to execute.").setRequired(true),
 					)
 					.addBooleanOption((option) =>
 						option
 							.setName("ephemeral")
 							.setDescription("Whether to send the reply public or not.")
-							.setRequired(false)
+							.setRequired(false),
 					),
-			{ behaviorWhenNotIdentical: RegisterBehavior.Overwrite }
+			{ behaviorWhenNotIdentical: RegisterBehavior.Overwrite },
 		);
 	}
 
-	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+	override chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const input = interaction.options.getString("input");
 		const ephemeral = interaction.options.getBoolean("ephemeral") ?? false;
 		let content = "";
@@ -60,6 +60,7 @@ export class EvaluateCommand extends Command {
 		const deleteRow = new ActionRowBuilder<ButtonBuilder>().addComponents(deleteButton);
 
 		try {
+			// biome-ignore lint/security/noGlobalEval: needed for command
 			let evaled = eval(input as string);
 			const timeTaken = ((Date.now() - interaction.createdTimestamp) / 1000).toFixed(3);
 			evaled = text.clean(evaled);
@@ -69,24 +70,24 @@ export class EvaluateCommand extends Command {
 			this.container.logger.error(`[EvalCommand] ${err}`);
 			content = `:x: **EVAL ERROR**\n\`\`\`xl\n${text.clean(String(err))}\`\`\``;
 			return interaction.reply({
-				content: content
+				content,
 			});
 		}
 
 		if (content.length < 2000) {
 			return interaction.reply({
-				content: content,
+				content,
 				flags: ephemeral ? MessageFlags.Ephemeral : undefined,
-				components: [deleteRow]
+				components: [deleteRow],
 			});
 		} else {
 			this.container.logger.info("!! EVAL COMPLETE !!");
-			console.log(content.replaceAll("```xl", "").replaceAll("```", ""));
+			this.container.logger.info(content.replaceAll("```xl", "").replaceAll("```", ""));
 
 			return interaction.reply({
 				content: `${getEmoji("crossmark")} The output was too long to be sent as a message. Output has been logged to the console.`,
 				flags: ephemeral ? MessageFlags.Ephemeral : undefined,
-				components: [deleteRow]
+				components: [deleteRow],
 			});
 		}
 	}

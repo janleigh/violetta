@@ -13,7 +13,7 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
 export const CrossMarkEmoji = "892539273075650661";
 export const CheckmarkEmoji = "892539273373417522";

@@ -1,7 +1,11 @@
+/** biome-ignore-all lint/correctness/noProcessGlobal: temp */
+/** biome-ignore-all lint/suspicious/noConsole: temp */
+/** biome-ignore-all lint/style/noNonNullAssertion: temp */
 import { REST, Routes } from "discord.js";
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN!);
 
-rest.put(Routes.applicationCommands("1320575111304314901"), { body: [] })
+rest
+	.put(Routes.applicationCommands("1320575111304314901"), { body: [] })
 	.then(() => console.log("Successfully deleted all application commands."))
 	.catch(console.error);

@@ -13,11 +13,11 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
-import { Command, Precondition } from "@sapphire/framework";
-import { Message } from "discord.js";
-import { DEV_USER_IDS } from "../config";
+import { type Command, Precondition } from "@sapphire/framework";
+import type { Message } from "discord.js";
+import { DEV_USER_IDS } from "../config.ts";
 
 export class DeveloperOnlyPrecondition extends Precondition {
 	public chatInputRun(interaction: Command.ChatInputCommandInteraction) {

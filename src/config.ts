@@ -13,10 +13,18 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
+/** biome-ignore-all lint/correctness/noNodejsModules: needed for env */
 
+// biome-ignore assist/source/organizeImports: vscode handles this
 import { BucketScope, LogLevel } from "@sapphire/framework";
-import { ActivityType, ClientOptions, GatewayIntentsString, PresenceData } from "discord.js";
+import {
+	ActivityType,
+	type ClientOptions,
+	type GatewayIntentsString,
+	type PresenceData,
+} from "discord.js";
+import process from "node:process";
 
 /**
  * @description The dev server IDs. The only places where developer commands will be registered.
@@ -42,7 +50,7 @@ const INTENTS: GatewayIntentsString[] = [
 	"GuildEmojisAndStickers",
 	"GuildVoiceStates",
 	"DirectMessages",
-	"DirectMessageReactions"
+	"DirectMessageReactions",
 ];
 
 /**
@@ -56,14 +64,14 @@ export const CLIENT_OPTIONS: ClientOptions = {
 		delay: 10_000,
 		filteredUsers: DEV_USER_IDS,
 		limit: 2,
-		scope: BucketScope.User
+		scope: BucketScope.User,
 	},
 	defaultPrefix: "/",
 	loadMessageCommandListeners: true,
 	enableLoaderTraceLoggings: true,
 	logger: {
-		level: process.env.NODE_ENV === "production" ? LogLevel.Info : LogLevel.Debug
-	}
+		level: process.env.NODE_ENV === "production" ? LogLevel.Info : LogLevel.Debug,
+	},
 };
 
 /**
@@ -75,8 +83,8 @@ export const PRESENCE_OPTIONS: PresenceData = {
 		{
 			name: "sucking my dev's blood 🔪",
 			type: ActivityType.Streaming,
-			url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-		}
+			url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+		},
 	],
-	status: "dnd"
+	status: "dnd",
 };

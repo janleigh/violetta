@@ -13,12 +13,12 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
 import { container } from "@sapphire/pieces";
-import { GuildEmoji } from "discord.js";
-import { Emoji } from "../../types/constants";
-import { EmojiName } from "../../types/constants/Emoji";
+import type { GuildEmoji } from "discord.js";
+import type { EmojiName } from "../../types/constants/Emoji.ts";
+import { Emoji } from "../../types/constants/index.ts";
 
 /**
  * Parses an emoji by its ID.

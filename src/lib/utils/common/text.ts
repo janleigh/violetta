@@ -13,9 +13,11 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
+/** biome-ignore-all lint/correctness/noNodejsModules: intended */
 
-import { inspect } from "util";
+import process from "node:process";
+import { inspect } from "node:util";
 
 /**
  * Cleans a string by removing sensitive information and formatting issues.

@@ -13,18 +13,20 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
-import { BaseClient } from "./lib/BaseClient";
+import { BaseClient } from "./lib/BaseClient.ts";
 
 import "@sapphire/plugin-logger/register";
 import "dotenv/config";
+// biome-ignore lint/correctness/noNodejsModules: linter
+import process from "node:process";
 
 const main = (): void => {
 	if (!process.env.DISCORD_TOKEN) {
 		throw new TypeError(
 			`Environment variable 'DISCORD_TOKEN' should be type string. Got type ${typeof process.env
-				.DISCORD_TOKEN} instead.`
+				.DISCORD_TOKEN} instead.`,
 		);
 	}
 

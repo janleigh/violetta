@@ -13,10 +13,10 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
 import { SapphireClient } from "@sapphire/framework";
-import { CLIENT_OPTIONS } from "../config";
+import { CLIENT_OPTIONS } from "../config.ts";
 
 export class BaseClient extends SapphireClient {
 	/**
@@ -40,7 +40,7 @@ export class BaseClient extends SapphireClient {
 	 * @description Logs in the client.
 	 * @param {string} [token] The bot token.
 	 */
-	public override async login(token?: string) {
+	override login(token?: string) {
 		return super.login(token);
 	}
 
@@ -48,7 +48,7 @@ export class BaseClient extends SapphireClient {
 	 * @override
 	 * @description Destroys the client.
 	 */
-	public override async destroy() {
+	override destroy() {
 		return super.destroy();
 	}
 }

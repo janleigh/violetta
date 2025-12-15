@@ -13,10 +13,10 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
 import { EmbedBuilder as DEmbedBuilder } from "discord.js";
-import { getEmoji } from "../utils/common/parsers";
+import { getEmoji } from "../utils/common/parsers.ts";
 
 export class EmbedBuilder extends DEmbedBuilder {
 	/**
@@ -50,7 +50,7 @@ export class EmbedBuilder extends DEmbedBuilder {
 	 * @param {boolean} [boldDescription] Whether to bold the description.
 	 * @returns {this}
 	 */
-	public override setDescription(description: string | null, boldDescription = false): this {
+	override setDescription(description: string | null, boldDescription: boolean = false): this {
 		if (description === null) return this;
 		if (this.errorEmbed === true) {
 			return super.setDescription(`${getEmoji("crossmark")} **${description}**`);
@@ -59,7 +59,9 @@ export class EmbedBuilder extends DEmbedBuilder {
 			return super.setDescription(`${getEmoji("checkmark")} **${description}**`);
 		}
 
-		return super.setDescription(`${boldDescription ? "**" : ""}${description}${boldDescription ? "**" : ""}`);
+		return super.setDescription(
+			`${boldDescription ? "**" : ""}${description}${boldDescription ? "**" : ""}`,
+		);
 	}
 
 	/**

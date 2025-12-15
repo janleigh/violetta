@@ -13,6 +13,10 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
+/** biome-ignore-all lint/performance/noBarrelFile: intended */
+/** biome-ignore-all lint/performance/noReExportAll: intended */
 
-export * as Emoji from "./Emoji";
+
+export * as Emoji from "./Emoji.ts";
+

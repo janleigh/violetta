@@ -13,21 +13,21 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
 import { ApplyOptions } from "@sapphire/decorators";
 import { Events, Listener, type ListenerOptions } from "@sapphire/framework";
-import { type Client } from "discord.js";
-import { PRESENCE_OPTIONS } from "../config";
+import type { Client } from "discord.js";
+import { PRESENCE_OPTIONS } from "../config.ts";
 
 @ApplyOptions<ListenerOptions>({
-	once: true
+	once: true,
 })
 export class ReadyListener extends Listener<typeof Events.ClientReady> {
 	public constructor(context: Listener.LoaderContext, options: Listener.Options) {
 		super(context, {
 			...options,
-			event: Events.ClientReady
+			event: Events.ClientReady,
 		});
 	}
 
