@@ -14,9 +14,8 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-/** biome-ignore-all lint/correctness/noNodejsModules: needed for env */
 
-// biome-ignore assist/source/organizeImports: vscode handles this
+import process from "node:process";
 import { BucketScope, LogLevel } from "@sapphire/framework";
 import {
 	ActivityType,
@@ -24,7 +23,6 @@ import {
 	type GatewayIntentsString,
 	type PresenceData,
 } from "discord.js";
-import process from "node:process";
 
 /**
  * @description The dev server IDs. The only places where developer commands will be registered.

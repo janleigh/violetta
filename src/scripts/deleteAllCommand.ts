@@ -1,6 +1,3 @@
-/** biome-ignore-all lint/correctness/noProcessGlobal: temp */
-/** biome-ignore-all lint/suspicious/noConsole: temp */
-/** biome-ignore-all lint/style/noNonNullAssertion: temp */
 import { REST, Routes } from "discord.js";
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN!);

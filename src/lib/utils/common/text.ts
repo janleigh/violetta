@@ -14,7 +14,6 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-/** biome-ignore-all lint/correctness/noNodejsModules: intended */
 
 import process from "node:process";
 import { inspect } from "node:util";
@@ -30,8 +29,8 @@ export const clean = (text: string) => {
 	}
 
 	text = text
-		.replace(/`/g, "`" + String.fromCharCode(8203))
-		.replace(/@/g, "@" + String.fromCharCode(8203))
+		.replace(/`/g, `\`${String.fromCharCode(8203)}`)
+		.replace(/@/g, `@${String.fromCharCode(8203)}`)
 		.replace(process.env.DISCORD_TOKEN, "<TOKEN>");
 	return text;
 };

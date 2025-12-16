@@ -40,7 +40,7 @@ export class BaseClient extends SapphireClient {
 	 * @description Logs in the client.
 	 * @param {string} [token] The bot token.
 	 */
-	override login(token?: string) {
+	public override login(token?: string) {
 		return super.login(token);
 	}
 
@@ -48,7 +48,7 @@ export class BaseClient extends SapphireClient {
 	 * @override
 	 * @description Destroys the client.
 	 */
-	override destroy() {
+	public override destroy() {
 		return super.destroy();
 	}
 }

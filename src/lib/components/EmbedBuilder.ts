@@ -50,7 +50,10 @@ export class EmbedBuilder extends DEmbedBuilder {
 	 * @param {boolean} [boldDescription] Whether to bold the description.
 	 * @returns {this}
 	 */
-	override setDescription(description: string | null, boldDescription: boolean = false): this {
+	public override setDescription(
+		description: string | null,
+		boldDescription: boolean = false,
+	): this {
 		if (description === null) return this;
 		if (this.errorEmbed === true) {
 			return super.setDescription(`${getEmoji("crossmark")} **${description}**`);

@@ -27,7 +27,7 @@ import { text } from "../../lib/utils/index.ts";
 	preconditions: ["DeveloperOnlyPrecondition"],
 })
 export class EvaluateCommand extends Command {
-	override registerApplicationCommands(registry: ChatInputCommand.Registry) {
+	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
 		registry.registerChatInputCommand(
 			(builder) =>
 				builder
@@ -46,7 +46,7 @@ export class EvaluateCommand extends Command {
 		);
 	}
 
-	override chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+	public override chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const input = interaction.options.getString("input");
 		const ephemeral = interaction.options.getBoolean("ephemeral") ?? false;
 		let content = "";

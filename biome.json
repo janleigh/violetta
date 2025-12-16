@@ -17,9 +17,19 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"correctness": "error",
-			"suspicious": "error",
-			"performance": "warn"
+			"style": {
+				"recommended": true,
+				"noNonNullAssertion": "off"
+			},
+			"correctness": {
+				"recommended": true
+			},
+			"suspicious": {
+				"recommended": true
+			},
+			"performance": {
+				"recommended": true
+			}
 		}
 	},
 	"javascript": {

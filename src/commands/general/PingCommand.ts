@@ -23,14 +23,14 @@ import { type ChatInputCommand, Command, RegisterBehavior } from "@sapphire/fram
 	fullCategory: ["General"],
 })
 export class PingCommand extends Command {
-	override registerApplicationCommands(registry: ChatInputCommand.Registry) {
+	public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
 		registry.registerChatInputCommand(
 			(builder) => builder.setName("ping").setDescription("Check the bot's latency."),
 			{ behaviorWhenNotIdentical: RegisterBehavior.Overwrite },
 		);
 	}
 
-	async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const start = Date.now();
 
 		await interaction.reply({

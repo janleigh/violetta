@@ -26,13 +26,13 @@ export class EvalDeleteButtonHandler extends InteractionHandler {
 		});
 	}
 
-	override parse(interaction: ButtonInteraction) {
+	public override parse(interaction: ButtonInteraction) {
 		if (interaction.customId !== "evalDelete") return this.none();
 
 		return this.some();
 	}
 
-	async run(interaction: ButtonInteraction) {
+	public async run(interaction: ButtonInteraction) {
 		await interaction.deferUpdate();
 
 		return interaction.message.delete();
