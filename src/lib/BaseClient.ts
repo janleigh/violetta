@@ -19,18 +19,6 @@ import { SapphireClient } from "@sapphire/framework";
 import { CLIENT_OPTIONS } from "../config.ts";
 
 export class BaseClient extends SapphireClient {
-	/**
-	 * @description Set of temporary voice channel IDs that should be deleted when empty.
-	 * @type {Set<string>}
-	 */
-	public tempVoiceChannels: Set<string> = new Set();
-
-	/**
-	 * @description Map of timeouts for temporary voice channels which auto-delete
-	 * if nobody joined within a grace period. Keyed by channel ID.
-	 */
-	public tempVoiceChannelTimeouts: Map<string, ReturnType<typeof setTimeout>> = new Map();
-
 	public constructor() {
 		super(CLIENT_OPTIONS);
 	}

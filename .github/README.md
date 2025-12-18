@@ -56,7 +56,7 @@ this readme sucks
    
    For development (with debug logging):
    ```bash
-   bun run start:dev
+   bun dev
    ```
    
    For production:
