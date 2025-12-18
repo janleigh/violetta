@@ -19,7 +19,6 @@ import { BaseClient } from "./lib/BaseClient.ts";
 
 import "@sapphire/plugin-logger/register";
 import "dotenv/config";
-import process from "node:process";
 
 const main = (): void => {
 	if (!process.env.DISCORD_TOKEN) {
